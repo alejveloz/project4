@@ -1,3 +1,5 @@
+<%@ page import="edu.ucla.cs.cs144.ItemBean" %>
+
 <html>
 <head>
     <title>Item result</title>
@@ -6,8 +8,7 @@
     Hello, world.
     
 	<%
-	String itemXML = (String)request.getAttribute("itemXML");
-	out.print(itemXML);
+	ItemBean item = (ItemBean)request.getAttribute("item");
 	%>
     
 </body>

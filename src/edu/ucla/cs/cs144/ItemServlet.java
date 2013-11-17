@@ -16,7 +16,8 @@ public class ItemServlet extends HttpServlet implements Servlet {
     	String itemId = request.getParameter("id");
     	
     	String itemXML = AuctionSearchClient.getXMLDataForItemId(itemId);
-    	request.setAttribute("itemXML", itemXML);
+    	ItemBean itemBean = new ItemBean(itemXML);
+    	request.setAttribute("itemBean", itemBean);
     	request.getRequestDispatcher("/item.jsp").forward(request, response);
     }
 }
