@@ -13,6 +13,10 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        // your codes here
+    	String itemId = request.getParameter("id");
+    	
+    	String itemXML = AuctionSearchClient.getXMLDataForItemId(itemId);
+    	request.setAttribute("itemXML", itemXML);
+    	request.getRequestDispatcher("/item.jsp").forward(request, response);
     }
 }
