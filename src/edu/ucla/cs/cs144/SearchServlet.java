@@ -19,6 +19,8 @@ public class SearchServlet extends HttpServlet implements Servlet {
     	int numResultsToSkip = Integer.valueOf(request.getParameter("numResultsToSkip"));
     	int numResultsToReturn = Integer.valueOf(request.getParameter("numResultsToReturn"));
     	
+    	SearchResult results[] = AuctionSearchClient.basicSearch(query, numResultsToSkip, numResultsToReturn);
+    	
     	PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head><title>Servlet Example</title></head>");
