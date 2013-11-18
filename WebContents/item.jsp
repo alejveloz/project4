@@ -8,6 +8,15 @@
 </head>
 <body>
 
+	<p>Enter an item ID below to see it's info</p>
+
+	<form action="item" method="GET">
+  		Item Id: <input type="text" name="id"><br>
+  		<input type="submit" /> 
+	</form>
+
+	<h1>Item Info</h1>
+
 	<%
 	ItemBean item = (ItemBean)request.getAttribute("item");
 	UserBean seller = item.getSeller();
