@@ -241,7 +241,7 @@ public class BeanParser {
     	UserBean userBean = new UserBean();
     	
     	// UserId
-    	userBean.setUserId(userElement.getAttribute("UserId"));
+    	userBean.setUserId(userElement.getAttribute("UserID"));
     	
     	// Rating
     	userBean.setRating(userElement.getAttribute("Rating"));
