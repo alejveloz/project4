@@ -260,7 +260,7 @@ public class BeanParser {
         ArrayList<String> categories = new ArrayList<String>();
         for(int i = 0; i < categoryElements.length; i++)
         {
-        	categories.add(getElementText(categoryElements[0]));
+        	categories.add(getElementText(categoryElements[i]));
         }
         
         return categories.toArray(new String[categories.size()]);
