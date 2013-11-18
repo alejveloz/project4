@@ -5,8 +5,7 @@
     <title>Search results</title>
 </head>
 <body>
-    Hello, world.
-    
+
 	<%
 	SearchResult[] results = (SearchResult[])request.getAttribute("results");
     for (int i = 0; i < results.length; i++) {
