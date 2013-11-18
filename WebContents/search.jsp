@@ -12,7 +12,8 @@
     	SearchResult result = results[i];
         %>
         <p>
-   			Item: <%= result.getItemId() %>. Name: <%= result.getName() %>.
+   			Item: <%= result.getItemId() %>. Name: <%= result.getName() %>. <br>
+   			<a href="item?id=<%= result.getItemId() %>">More info</a>
 		</p>
         <%
     }
