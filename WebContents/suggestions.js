@@ -4,14 +4,14 @@
  * @class
  * @scope public
  */
-function StateSuggestions() {}
+function GoogleSuggestions() {}
 
 /**
  * Request suggestions for the given autosuggest control. 
  * @scope protected
  * @param oAutoSuggestControl The autosuggest control to provide suggestions for.
  */
-StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/,
+GoogleSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/,
                                                           bTypeAhead /*:boolean*/) {
     var aSuggestions = [];
     var sTextboxValue = oAutoSuggestControl.textbox.value;
