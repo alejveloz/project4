@@ -26,6 +26,8 @@ public class ProxyServlet extends HttpServlet implements Servlet {
     {
     	String query = request.getParameter("q");
     	
+        response.setContentType("text/xml");
+    	
     	HttpURLConnection connection = null;
         BufferedReader rd  = null;
         StringBuilder sb = null;
