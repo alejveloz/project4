@@ -26,7 +26,8 @@ function StateSuggestions() {
  * @scope protected
  * @param oAutoSuggestControl The autosuggest control to provide suggestions for.
  */
-StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/) {
+StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/,
+                                                          bTypeAhead /*:boolean*/) {
     var aSuggestions = [];
     var sTextboxValue = oAutoSuggestControl.textbox.value;
     
@@ -41,5 +42,5 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
     }
 
     //provide suggestions to the control
-    oAutoSuggestControl.autosuggest(aSuggestions);
+    oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
 };
