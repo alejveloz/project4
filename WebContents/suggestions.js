@@ -4,22 +4,7 @@
  * @class
  * @scope public
  */
-function StateSuggestions() {
-    this.states = [
-        "Alabama", "Alaska", "Arizona", "Arkansas",
-        "California", "Colorado", "Connecticut",
-        "Delaware", "Florida", "Georgia", "Hawaii",
-        "Idaho", "Illinois", "Indiana", "Iowa",
-        "Kansas", "Kentucky", "Louisiana",
-        "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", 
-        "Mississippi", "Missouri", "Montana",
-        "Nebraska", "Nevada", "New Hampshire", "New Mexico", "New York",
-        "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", 
-        "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", 
-        "Washington", "West Virginia", "Wisconsin", "Wyoming"  
-    ];
-}
+function StateSuggestions() {}
 
 /**
  * Request suggestions for the given autosuggest control. 
@@ -33,14 +18,35 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
     
     if (sTextboxValue.length > 0){
     
-        //search for matching states
-        for (var i=0; i < this.states.length; i++) { 
-            if (this.states[i].indexOf(sTextboxValue) == 0) {
-                aSuggestions.push(this.states[i]);
-            } 
-        }
+        // Create an request
+        xmlhttp = new XMLHttpRequest();
+        
+        // Assign a callback function
+        xmlhttp.onreadystatechange = function()
+        	{
+        		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        		{
+        			xmlDoc = xmlhttp.responseXML;
+        			
+        			suggestions = xmlDoc.getElementsByTagName("suggestion");
+					for (i = 0; i < suggestions.length; i++)
+  					{
+  						aSuggestions.push(suggestions[i].getAttribute('data'));
+  					}
+  					
+    				//provide suggestions to the control
+    				oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
+        		}
+        	}
+        	
+        // Open and send the request
+        xmlhttp.open("GET","suggest?q=" + encodeURIComponent(sTextboxValue), true);
+		xmlhttp.send();
+    }
+    else
+    {
+    	//provide suggestions to the control
+    	oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
     }
 
-    //provide suggestions to the control
-    oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
 };
