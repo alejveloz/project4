@@ -6,6 +6,13 @@
 <head>
     <title>Item result</title>
 </head>
+
+<style type="text/css">
+#google-map {height: 300px; width: 400px;}
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
 <body>
 
 	<p>Enter an item ID below to see it's info</p>
@@ -63,7 +70,7 @@
    			First Bid: <%= item.getFirstBid() %>. <br>
    			Number of Bids: <%= item.getNumberOfBids() %>. <br>
    	</p>
-   	
+
    	<p>
    			Bids <br>
    			<% BidBean[] bids = item.getBids(); 
@@ -90,6 +97,41 @@
    			}
    			%>
 	</p>
+<div id="google-map"></div>
+
+ <script>
+            var geocoder;
+            var map;
+            function initialize() {
+              geocoder = new google.maps.Geocoder();
+              var latlng = new google.maps.LatLng(-34.397, 150.644);
+              var mapOptions = {
+                zoom: 10,
+                center: latlng
+              }
+              map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+              codeAddress();
+            }
+
+            function codeAddress() {
+              var address = '<%= item.getLocation() %>';
+              geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                      map: map,
+                      position: results[0].geometry.location
+                  });
+                } else {
+                  document.getElementById('google-map').style.display = 'none';
+                }
+              });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+
+
 	
 </body>
 </html>
