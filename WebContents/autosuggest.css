@@ -6,6 +6,7 @@ div.suggestions {
 }
 
 div.suggestions div {
+    background-color: #FFFFFF;
     cursor: default;
     padding: 0px 3px;
 }

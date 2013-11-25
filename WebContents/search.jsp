@@ -3,13 +3,21 @@
 <html>
 <head>
     <title>Search results</title>
+    <script type="text/javascript" src="autosuggest.js"></script>
+	<script type="text/javascript" src="suggestions.js"></script>
+	<link rel="stylesheet" type="text/css" href="autosuggest.css" />
+	<script type="text/javascript">
+    	window.onload = function () {
+    	    var oTextbox = new AutoSuggestControl(document.getElementById("txt1"), new GoogleSuggestions());        
+    	}
+	</script> 
 </head>
 <body>
 
 	<p>Search a new item below and hit submit!</p>
 
 	<form action="search" method="GET">
-  		Keywords: <input type="text" name="q"><br>
+  		Keywords: <input type="text" name="q" id="txt1"><br>
   		<input type="hidden" name="numResultsToSkip" value="0" /> 
   		<input type="hidden" name="numResultsToReturn" value="20" /> 
   		<input type="submit" /> 
