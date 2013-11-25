@@ -19,6 +19,13 @@
 
 	<%
 	SearchResult[] results = (SearchResult[])request.getAttribute("results");
+	String range = (String)request.getAttribute("range");
+	
+	if(results.length == 0)
+		out.println("No results found! Please try searching again!");
+	else
+		out.println("Showing results: " + range);
+	
     for (int i = 0; i < results.length; i++) {
     	SearchResult result = results[i];
         %>
@@ -29,6 +36,25 @@
         <%
     }
 %>
-    
+
+<br>
+<br>
+
+
+<%
+String prev = (String)request.getAttribute("prev") ;
+if(prev != null) {
+out.println("<a href=\"search?" + prev + "\">Previous</a> ");
+}
+%>
+
+<%
+String next = (String)request.getAttribute("next") ;
+if(next != null) {
+out.println("<a href=\"search?" + next + "\">Next</a>");
+}
+%>
+
+
 </body>
 </html>
